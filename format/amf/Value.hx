@@ -30,9 +30,10 @@ enum Value {
 	ANumber( f : Float );
 	ABool( b : Bool );
 	AString( s : String );
-	AObject( fields : Map<String,Value>, ?size : Int );
+	AObject( fields : Map<String, Value>, ?size : Int );
 	ADate( d : Date );
 	AUndefined;
 	ANull;
 	AArray( values : Array<Value> );
+	ACustomClass( name:String, fields : Map<String, Value>);
 }
