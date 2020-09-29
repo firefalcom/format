@@ -98,6 +98,8 @@ class Reader {
 			ADate( Date.fromTime(time_ms + tz_min * 60 * 1000.0) );
 		case 0x0C:
 			AString( i.readString(readInt()) );
+		case 0x10:
+			ACustomClass(i.readString(i.readUInt16()), readObject());
 		default:
 			throw "Unknown AMF "+id;
 		}

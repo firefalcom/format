@@ -93,6 +93,8 @@ class Writer {
 			#end
 			for(f in a)
 				write(f);
+		case ACustomClass(a, b):
+			throw "to do";
 		}
 	}
 
