@@ -45,18 +45,15 @@ class Writer {
 			o.writeByte(0x01);
 			o.writeByte(if( b ) 1 else 0);
 		case AString(s):
-			if( s.length <= 0xFFFF ) {
+			var b = haxe.io.Bytes.ofString(s);
+			if( b.length <= 0xFFFF ) {
 				o.writeByte(0x02);
-				o.writeUInt16(s.length);
+				o.writeUInt16(b.length);
 			} else {
 				o.writeByte(0x0C);
-				#if haxe3
-				o.writeInt32(s.length);
-				#else
-				o.writeUInt30(s.length);
-				#end
+				o.writeInt32(b.length);
 			}
-			o.writeString(s);
+			o.write(b);
 		case AObject(h,size):
 			if( size == null )
 				o.writeByte(0x03);
